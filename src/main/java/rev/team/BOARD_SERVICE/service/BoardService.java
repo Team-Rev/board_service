@@ -10,6 +10,7 @@ import org.springframework.web.client.RestTemplate;
 import rev.team.BOARD_SERVICE.domain.entity.Board;
 import rev.team.BOARD_SERVICE.domain.entity.BoardDTO;
 import rev.team.BOARD_SERVICE.domain.repository.BoardRepository;
+import rev.team.BOARD_SERVICE.util.Category;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
@@ -48,12 +49,12 @@ public class BoardService {
         return "OK";
     }
 
-    public List<BoardDTO> getPosts() {
-        Pageable pageable = PageRequest.of(1, 10, Sort.Direction.DESC, "boardId");
+    public List<BoardDTO> getMainPosts() {
+        Pageable pageable = PageRequest.of(0, 10, Sort.Direction.DESC, "boardId");
         RestTemplate restTemplate = new RestTemplate();
 
         List<BoardDTO> boardDTOs= new ArrayList<>();
-        for(Board board : boardRepository.findAll(pageable)){
+        for(Board board : boardRepository.findAllByStatusAndCategory(1, Category.Announcement ,pageable)){
             String nickname = restTemplate.getForObject("http://localhost:8760/nickname?id="+board.getUserId() ,String.class);
             boardDTOs.add(BoardDTO.builder()
                     .boardId(board.getBoardId())

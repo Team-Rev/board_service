@@ -25,9 +25,9 @@ public class BoardController {
         return boardService.getPost(id);
     }
 
-    @GetMapping("/post")
-    public List<BoardDTO> getPosts(){
-        return boardService.getPosts();
+    @GetMapping("/post-main")
+    public List<BoardDTO> getMainPosts(){
+        return boardService.getMainPosts();
     }
 
     @PostMapping("/post")
