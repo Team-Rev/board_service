@@ -4,7 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import rev.team.BOARD_SERVICE.domain.entity.Board;
+import rev.team.BOARD_SERVICE.domain.entity.BoardDTO;
 import rev.team.BOARD_SERVICE.service.BoardService;
+
+import java.util.List;
+
 
 @RestController
 public class BoardController {
@@ -21,6 +25,11 @@ public class BoardController {
         return boardService.getPost(id);
     }
 
+    @GetMapping("/post")
+    public List<BoardDTO> getPosts(){
+        return boardService.getPosts();
+    }
+
     @PostMapping("/post")
     public ResponseEntity<Board> createPost(@RequestBody Board board){
         return ResponseEntity.ok(boardService.save(board));
@@ -35,4 +44,6 @@ public class BoardController {
     public String updatePost(@PathVariable("id") Long id, @RequestParam("title")String title){
         return boardService.updatePost(id, title);
     }
+
+
 }

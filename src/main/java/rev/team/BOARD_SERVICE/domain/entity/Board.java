@@ -15,7 +15,7 @@ import java.util.Date;
 @Data
 @Builder
 @Entity
-@Table(name = "board", indexes = {@Index(columnList = "board_id DESC")})
+@Table(name = "board", indexes = {@Index(columnList = "board_id")})
 public class Board {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

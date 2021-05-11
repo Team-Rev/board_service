@@ -12,4 +12,5 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
     @Modifying
     @Query(value = "UPDATE `rev_problem`.`board` SET `title` = :title WHERE (`board_id` = :id);", nativeQuery = true)
     void updateById(Long id, String title);
+
 }
