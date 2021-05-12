@@ -20,6 +20,7 @@ import java.util.Date;
 @Entity
 public class Notice {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "notice_id")

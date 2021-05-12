@@ -45,5 +45,12 @@ public class BoardController {
         return boardService.updatePost(id, title);
     }
 
+    //TODO : 게시판 별로 테이블 나누기
+    // 공지글(2021-05-12~ing, 김태영)
+    // 질문글
+    // 문의글
+
+
+    //TODO : 글 세부내역 조회하면 조회수올리면서 해당 아이디의 글 반환
 
 }
