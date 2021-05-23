@@ -23,6 +23,7 @@ public class Ask {
     private Long askId;
 
     private String userId; // 작성자
+
     private String nickname; // 작성자 작성 시 닉네임
 
     @Column(columnDefinition = "TEXT")
