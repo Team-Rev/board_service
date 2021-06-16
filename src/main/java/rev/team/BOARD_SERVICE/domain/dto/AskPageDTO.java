@@ -14,5 +14,5 @@ import rev.team.BOARD_SERVICE.domain.entity.Ask;
 
 public class AskPageDTO {
     private Long pageCount;
-    private Page<Ask> notices;
+    private Page<Ask> asks;
 }

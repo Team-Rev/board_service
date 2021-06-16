@@ -25,9 +25,10 @@ public class AskController {
     }
 
     //TODO: GET ASK DETAIL. 질문의 내용과 댓글들
+
     @GetMapping("/{id}")
     public Ask getAsk(@PathVariable("id") Long id){
-        return Ask.builder().build();
+        return askService.getAsk(id);
     }
 
     //TODO: GET ASK PAGE. 페이지 별로 보여질 질문 요약
@@ -41,4 +42,8 @@ public class AskController {
     public List<Ask> getAskOfFrequency(){
         return new ArrayList<>();
     }
+
+    //TODO: 작성
+    //TODO: 수정
+    //TODO: 삭제
 }

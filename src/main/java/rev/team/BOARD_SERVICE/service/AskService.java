@@ -9,6 +9,9 @@ import rev.team.BOARD_SERVICE.domain.dto.AskPageDTO;
 import rev.team.BOARD_SERVICE.domain.entity.Ask;
 import rev.team.BOARD_SERVICE.domain.repository.AskRepository;
 
+import javax.transaction.Transactional;
+import java.util.Optional;
+
 @Service
 public class AskService {
 
@@ -24,11 +27,19 @@ public class AskService {
 
         return AskPageDTO.builder()
                 .pageCount(askRepository.count())
-                .notices(askRepository.findAll(pageable))
+                .asks(askRepository.findAll(pageable))
                 .build();
     }
 
     public void createAsk(Ask ask) {
         askRepository.save(ask);
+    }
+
+    @Transactional
+    public Ask getAsk(Long id) {
+        askRepository.hits(id);
+        askRepository.flush();
+        Optional<Ask> askOptional= askRepository.findById(id);
+        return askOptional.orElse(null);
     }
 }

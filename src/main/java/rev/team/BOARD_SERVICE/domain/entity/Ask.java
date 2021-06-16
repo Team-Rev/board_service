@@ -13,8 +13,11 @@ import java.util.Date;
 @NoArgsConstructor
 @Data
 @Builder
+
 @Entity
+
 @Table(name = "ask")
+
 public class Ask {
 
     @Id
@@ -31,6 +34,9 @@ public class Ask {
 
     @Column(columnDefinition = "TEXT")
     private String content; // 내용
+
+    @Column(columnDefinition = "integer default 0")
+    private Integer comments = 0;
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
