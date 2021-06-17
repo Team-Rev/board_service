@@ -12,4 +12,8 @@ public interface AskRepository extends JpaRepository<Ask, Long> {
     @Modifying
     @Query(value = "UPDATE Ask SET hits = hits+1 WHERE askId = :id")
     void hits(@Param("id")Long id);
+
+    @Modifying
+    @Query(value = "UPDATE Ask SET comments = comments +1 WHERE askId = :id")
+    void updateReComments(@Param("id")Long id);
 }
