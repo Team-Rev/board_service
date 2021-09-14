@@ -32,10 +32,6 @@ public class AskService {
                 .build();
     }
 
-    public void createAsk(Ask ask) {
-        askRepository.save(ask);
-    }
-
     @Transactional
     public Ask getAsk(Long id) {
         askRepository.hits(id);
@@ -46,5 +42,26 @@ public class AskService {
 
     public List<Ask> getAskOfFrequency() {
         return askRepository.findAllDesc();
+    }
+
+    public String createAsk(Ask ask) {
+        askRepository.save(ask);
+
+        return "SUCCESS";
+    }
+
+    public String updateAsk(Ask ask) {
+        Ask updateAsk = askRepository.findById(ask.getAskId()).get();
+
+        updateAsk.setTitle(ask.getTitle());
+        updateAsk.setContent(ask.getContent());
+        askRepository.save(updateAsk);
+
+        return "SUCCESS";
+    }
+
+    public String deleteAsk(Long askId) {
+        askRepository.deleteById(askId);
+        return "SUCCESS";
     }
 }
