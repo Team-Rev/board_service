@@ -81,4 +81,25 @@ public class NoticeService {
         }
         return "NONE";
     }
+
+    public Notice save(Notice notice) {
+        noticeRepository.save(notice);
+        return notice;
+    }
+
+    public String deletePost(Long id) {
+        noticeRepository.deleteById(id);
+        return "OK";
+    }
+
+    public String updatePost(Notice notice) {
+        Notice updateNotice = noticeRepository.findById(notice.getNoticeId()).get();
+
+        updateNotice.setTitle(notice.getTitle());
+        updateNotice.setContent(notice.getContent());
+
+        noticeRepository.save(updateNotice);
+
+        return "OK";
+    }
 }

@@ -20,19 +20,22 @@ public class CommentController {
         this.commentService = commentService;
     }
 
-    //TODO : 작성
-    @PostMapping("")
-    public ResponseEntity<Comment> create(@RequestBody Comment comment){
-        Comment newComment = commentService.create(comment);
-        return new ResponseEntity<>(newComment, HttpStatus.OK);
-    }
-
     //TODO : 조회(무한로딩 해야됨)
     @GetMapping("")
     public List<Comment> getComments(@RequestParam("askId") Long askId, @RequestParam("page") Integer page){
         return commentService.getComments(askId, page);
     }
 
-    //TODO : 수정
-    //TODO : 삭제
+    //작성
+    @PostMapping("")
+    public ResponseEntity<Comment> create(@RequestBody Comment comment){
+        Comment newComment = commentService.create(comment);
+        return new ResponseEntity<>(newComment, HttpStatus.OK);
+    }
+
+    //삭제
+    @DeleteMapping("")
+    public String delete(@RequestParam("commentId") Long commentId){
+        return commentService.delete(commentId);
+    }
 }
