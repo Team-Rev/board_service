@@ -26,7 +26,7 @@ public class CommentService {
 
     @Transactional
     public String create(Comment comment) {
-        askRepository.updateReComments(comment.getRefAsk()); // 질문 글에 댓글 수 +1
+        askRepository.upReComments(comment.getRefAsk()); // 질문 글에 댓글 수 +1
 
         commentRepository.save(Comment.builder()
                 .userId(comment.getUserId())
@@ -38,7 +38,9 @@ public class CommentService {
         return "OK";
     }
 
-    public String delete(Long commentId) {
+    @Transactional
+    public String delete(Long commentId, Long refAsk) {
+        askRepository.downReComments(refAsk); // 질문 글에 댓글 수 -1
         commentRepository.deleteById(commentId);
 
         return "OK";
